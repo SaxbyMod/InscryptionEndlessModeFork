@@ -1,0 +1,9 @@
+{
+    "name": "EndlessMode",
+    "version_number": "0.1.0",
+    "website_url": "https://github.com/JamesVeug/InscryptionEndlessMode",
+    "description": "Play the same KCM run forever until you die",
+    "dependencies": [
+        "API_dev-API-2.18.0"
+    ]
+}
