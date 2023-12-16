@@ -5,22 +5,6 @@ using HarmonyLib;
 [HarmonyPatch]
 public static class Patches
 {
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(LeshyBossOpponent), nameof(LeshyBossOpponent.LifeLostSequence))]
-    public static IEnumerator LeshyBossOpponent_LifeLostSequence_Prefix(IEnumerator sequenceEvent, LeshyBossOpponent __instance)
-    {
-        if (__instance.NumLives == 0)
-        {
-            CustomCoroutine.WaitThenExecute(1.25f, delegate
-            {
-                AudioController.Instance.StopAllLoops();
-            });
-            return Endless.FinalBossKilled(__instance);
-        }
-
-        return sequenceEvent;
-    }
-    
     [HarmonyPrefix, HarmonyPatch(typeof(RunState), nameof(RunState.NextRegion))]
     public static bool RunState_NextRegion(RunState __instance)
     {

@@ -35,4 +35,9 @@ public static class Endless
         BossesKilled[instanceOpponentType]++;
         Plugin.Log.LogInfo($"Killed {instanceOpponentType} {BossesKilled[instanceOpponentType]} times.");
     }
+
+    public static bool EndlessRunFinished()
+    {
+        return false;
+    }
 }
