@@ -18,7 +18,6 @@ namespace EndlessMode
         private static int m_totalFinalBossesKilled = 0;
         private static Dictionary<Opponent.Type, int> m_bossKillLookup = new Dictionary<Opponent.Type, int>();
 
-
         public static void SetupNewRun()
         {
             m_totalResets = 0;

@@ -25,6 +25,8 @@ namespace EndlessMode
 
 			new Harmony(PluginGuid).PatchAll();
 
+			Custom_AscensionStat.AddCustomStat(PluginGuid, "Final Bosses Killed", ()=>RunStats.TotalFinalBossesKilled);
+			Custom_AscensionStat.AddCustomStat(PluginGuid, "Highest Floor", ()=>RunStats.CurrentFloor);
 
 			Logger.LogInfo($"Loaded {PluginName}!");
 		}
