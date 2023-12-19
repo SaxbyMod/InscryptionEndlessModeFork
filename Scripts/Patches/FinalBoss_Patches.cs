@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Diagnostics;
 using System.Reflection;
 using DiskCardGame;
 using HarmonyLib;
@@ -16,41 +15,32 @@ namespace EndlessMode
         {
             public static IEnumerable<MethodBase> TargetMethods()
             {
-                // Find all subclasses of Part1BossOpponent that override LifeLostSequence and patch it so it doesn't end the game.
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-                int count = 0;
-                foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+                foreach (Type bossType in Plugin.AllBossTypes)
                 {
-                    foreach (Type type in assembly.GetTypes())
+                    // Get LifeLostSequence method
+                    MethodInfo method = bossType.GetMethod("LifeLostSequence");
+                    if (method != null)
                     {
-                        if (type.IsSubclassOf(typeof(Part1BossOpponent)))
-                        {
-                            //Plugin.Log.LogInfo($"Found method boss opponent type {type}");
-
-                            // Get LifeLostSequence method
-                            MethodInfo method = type.GetMethod("LifeLostSequence",
-                                BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public |
-                                BindingFlags.NonPublic);
-                            if (method != null)
-                            {
-                                //Plugin.Log.LogInfo($" - Has {method} method!");
-                                yield return method;
-                                count++;
-                            }
-                        }
+                        yield return method;
+                    }
+                    else
+                    {
+                        Plugin.Log.LogInfo($"No method for " + bossType.ToString());
                     }
                 }
-
-                stopwatch.Stop();
-                Plugin.Log.LogInfo($"Found {count} methods in {stopwatch.ElapsedMilliseconds}ms");
             }
 
             public static IEnumerator Postfix(IEnumerator sequenceEvent, Part1BossOpponent __instance)
             {
                 yield return sequenceEvent;
-                if (__instance.NumLives == 0)
+
+                if (__instance.NumLives != 0) 
+                    yield break;
+                
+                
+                if (Plugin.AllFinalBossTypes.Contains(__instance.GetType()))
                 {
+                    // Final boss killed
                     Singleton<UIManager>.Instance.Effects.GetEffect<ScreenColorEffect>().SetColor(Color.black);
                     Singleton<UIManager>.Instance.Effects.GetEffect<ScreenColorEffect>().SetIntensity(0f, 3f);
                     yield return new WaitForSeconds(0.8f);

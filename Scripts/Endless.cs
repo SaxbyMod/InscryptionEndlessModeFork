@@ -33,11 +33,31 @@ public static class Endless
     public static void BossKilled(Part1BossOpponent opponent)
     {
         RunStats.BossKilled(opponent);
-        Plugin.Log.LogInfo($"Killed {opponent.OpponentType}");
     }
 
     public static bool EndlessRunFinished()
     {
+        switch (Configs.LimitMode)
+        {
+            case Configs.HardLimitType.RegionHardLimit:
+                Plugin.Log.LogInfo($"EndlessRunFinished " + Configs.LimitMode + " " + RunStats.CurrentFloor + " >= " + Configs.RegionHardLimit);
+                if (RunStats.CurrentFloor >= Configs.RegionHardLimit)
+                {
+                    return true;
+                }
+                break;
+            case Configs.HardLimitType.FinalBossHardLimit:
+                Plugin.Log.LogInfo($"EndlessRunFinished " + Configs.LimitMode + " " + RunStats.TotalFinalBossesKilled + " >= " + Configs.FinalBossHardLimit);
+                if (RunStats.TotalFinalBossesKilled >= Configs.FinalBossHardLimit)
+                {
+                    return true;
+                }
+                break;
+            default:
+                Plugin.Log.LogWarning($"EndlessRunFinished unhandled limit mode: " + Configs.LimitMode);
+                break;
+        }
+
         return false;
     }
 }
