@@ -35,5 +35,15 @@ namespace EndlessMode
 
             return true;
         }
+
+        [HarmonyPrefix, HarmonyPatch(typeof(RunInfoUIBar), nameof(RunInfoUIBar.UpdateText))]
+        public static bool RunInfoUIBar_UpdateText(RunInfoUIBar __instance)
+        {
+            string text = string.Format(Localization.Translate("MAP #{0}"), RunState.Run.regionTier + 1);
+            text += " - " + string.Format(Localization.Translate("Floor #{0}"), RunStats.CurrentFloor);
+            text += " - " + string.Format(Localization.Translate("Resets #{0}"), RunStats.TotalResets);
+            __instance.mapIndexText.SetText(text);
+            return false;
+        }
     }
 }
