@@ -21,7 +21,7 @@ Only way to end the run is to manually end it or to lose.
 
 ## Contributors
 - JamesGames
-- Thincreator3483
+- Creator
 
 ## Thanks To:
 - acmol - Code Inspiration and mod inspiration
