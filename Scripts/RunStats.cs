@@ -76,11 +76,6 @@ namespace EndlessMode
 
             string json = JsonUtility.ToJson(new SerializedDictionary(m_bossKillLookup));
             ModdedSaveManager.RunState.SetValue(Plugin.PluginGuid, "BossKillLookup", json);
-
-            Plugin.Log.LogInfo($"Save m_totalFinalBossesKilled: {m_totalFinalBossesKilled}");
-            Plugin.Log.LogInfo($"Save m_bossKillLookup: {m_bossKillLookup.Count}");
-            Plugin.Log.LogInfo($"Save m_totalResets: {m_totalResets}");
-            Plugin.Log.LogInfo($"Save m_currentFloor: {m_currentFloor}");
         }
 
         [HarmonyPostfix, HarmonyPatch(typeof(ModdedSaveManager), "ReadDataFromFile", new Type[] { })]
@@ -95,16 +90,9 @@ namespace EndlessMode
             string json = ModdedSaveManager.RunState.GetValue(Plugin.PluginGuid, "BossKillLookup");
             if (!string.IsNullOrEmpty(json))
             {
-                Plugin.Log.LogInfo($"json: {json}");
                 SerializedDictionary serializedDictionary = JsonUtility.FromJson<SerializedDictionary>(json);
                 serializedDictionary.LoadIntoDictionary(m_bossKillLookup);
-                Plugin.Log.LogInfo($"m_bossKillLookup: {m_bossKillLookup.Count}");
             }
-
-            Plugin.Log.LogInfo($"Load m_totalFinalBossesKilled: {m_totalFinalBossesKilled}");
-            Plugin.Log.LogInfo($"Load m_bossKillLookup: {m_bossKillLookup.Count}");
-            Plugin.Log.LogInfo($"Load m_totalResets: {m_totalResets}");
-            Plugin.Log.LogInfo($"Load m_currentFloor: {m_currentFloor}");
         }
     }
 }
