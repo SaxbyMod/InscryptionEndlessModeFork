@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using DiskCardGame;
+﻿using DiskCardGame;
 using HarmonyLib;
 
 namespace EndlessMode

@@ -20,6 +20,7 @@ namespace EndlessMode
 		{
 			Instance = this;
 			Log = Logger;
+			Configs.Instance = new Configs();
 
 			PluginDirectory = this.Info.Location.Replace("EndlessMode.dll", "");
 
