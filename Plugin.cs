@@ -10,7 +10,7 @@ namespace EndlessMode
 	{
 		public const string PluginGuid = "jamesgames.inscryption.endlessmode";
 		public const string PluginName = "Endless Mode";
-		public const string PluginVersion = "0.1.0";
+		public const string PluginVersion = "0.2.0";
 
 		public static Plugin Instance;
 		public static ManualLogSource Log;
