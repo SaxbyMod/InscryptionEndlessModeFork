@@ -28,7 +28,7 @@ namespace EndlessMode
             // }
             
             // Pelt Prices
-            if (!Configs.Instance.ResetDifficultyAfterFinalBosses)
+            if (!Configs.Instance.ResetPeltPricesAfterFinalBosses)
             {
                 yield return typeof(PeltManager).GetProperty("BasePeltPrices", allFlags).GetMethod;
             }

@@ -6,25 +6,25 @@ public class Configs
 {
 	public static Configs Instance;
 	
-	public bool ResetDifficultyAfterFinalBosses
-	{
-		get => m_ResetDifficultyAfterFinalBosses.Value;
-		set
-		{
-			m_ResetDifficultyAfterFinalBosses.Value = value;
-			Plugin.Instance.Config.Save();
-		}
-	}
-	
-	// public bool ResetPeltPricesAfterFinalBosses
+	// public bool ResetDifficultyAfterFinalBosses
 	// {
-	// 	get => m_ResetPeltPricesAfterFinalBosses.Value;
+	// 	get => m_ResetDifficultyAfterFinalBosses.Value;
 	// 	set
 	// 	{
-	// 		m_ResetPeltPricesAfterFinalBosses.Value = value;
+	// 		m_ResetDifficultyAfterFinalBosses.Value = value;
 	// 		Plugin.Instance.Config.Save();
 	// 	}
 	// }
+	
+	public bool ResetPeltPricesAfterFinalBosses
+	{
+		get => m_ResetPeltPricesAfterFinalBosses.Value;
+		set
+		{
+			m_ResetPeltPricesAfterFinalBosses.Value = value;
+			Plugin.Instance.Config.Save();
+		}
+	}
 	
 	/*
 	 public static bool HardLimit
@@ -108,8 +108,8 @@ public class Configs
 	 private static ConfigEntry<int> m_FinalBossHardLimit = Bind("HardLimit", "Final Boss Hard Limit", 99999999, "If LimitMode is set to [FinalBossHardLimit] how many FinalBosses should be the limit?");
 
 */	
-	private ConfigEntry<bool> m_ResetDifficultyAfterFinalBosses = Bind("Difficulty", "Reset after Final Bosses", false, "If disabled then the difficulty continues getting harder after killing a final boss");
-	//private ConfigEntry<bool> m_ResetPeltPricesAfterFinalBosses = Bind("Pelts", "Reset Prices aAfter Final Bosses", false, "If disabled then the prices for pelts resets back to cheapest after killing a final boss");
+	//private ConfigEntry<bool> m_ResetDifficultyAfterFinalBosses = Bind("Difficulty", "Reset after Final Bosses", false, "If disabled then the difficulty continues getting harder after killing a final boss");
+	private ConfigEntry<bool> m_ResetPeltPricesAfterFinalBosses = Bind("Pelts", "Reset Prices after Final Bosses", false, "If disabled then the prices for pelts resets back to cheapest after killing a final boss");
 	
 	private static ConfigEntry<T> Bind<T>(string section, string key, T defaultValue, string description)
 	{
