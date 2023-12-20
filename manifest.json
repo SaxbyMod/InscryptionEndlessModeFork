@@ -1,9 +1,11 @@
 {
     "name": "EndlessMode",
-    "version_number": "0.1.0",
-    "website_url": "https://github.com/JamesVeug/InscryptionEndlessMode",
+    "version_number": "0.2.0",
+    "website_url": "",
     "description": "Play the same KCM run forever until you die",
     "dependencies": [
-        "API_dev-API-2.18.0"
+        "BepInEx-BepInExPack_Inscryption-5.4.1902",
+        "BepInEx-MonoMod_Loader_Inscryption-1.0.0",
+        "API_dev-API-2.7.0"
     ]
 }
