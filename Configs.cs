@@ -26,6 +26,71 @@ public class Configs
 		}
 	}
 	
+	public int DifficultyIncreaseChancePerReset
+	{
+		get => m_DifficultyIncreaseChancePerReset.Value;
+		set
+		{
+			m_DifficultyIncreaseChancePerReset.Value = value;
+			Plugin.Instance.Config.Save();
+		}
+	}
+	
+	public int DifficultyHealthBuff
+	{
+		get => m_DifficultyHealthBuff.Value;
+		set
+		{
+			m_DifficultyHealthBuff.Value = value;
+			Plugin.Instance.Config.Save();
+		}
+	}
+	
+	public int DifficultyHealthChance
+	{
+		get => m_DifficultyHealthChance.Value;
+		set
+		{
+			m_DifficultyHealthChance.Value = value;
+			Plugin.Instance.Config.Save();
+		}
+	}
+	
+	public int DifficultyAttackBuff
+	{
+		get => m_DifficultyAttackBuff.Value;
+		set
+		{
+			m_DifficultyAttackBuff.Value = value;
+			Plugin.Instance.Config.Save();
+		}
+	}
+	
+	public int DifficultyAttackChance
+	{
+		get => m_DifficultyAttackChance.Value;
+		set
+		{
+			m_DifficultyAttackChance.Value = value;
+			Plugin.Instance.Config.Save();
+		}
+	}
+	
+	public int DifficultySigilChance
+	{
+		get => m_DifficultySigilChance.Value;
+		set
+		{
+			m_DifficultySigilChance.Value = value;
+			Plugin.Instance.Config.Save();
+		}
+	}
+	
+	
+	
+	
+	
+	
 	/*
 	 public static bool HardLimit
 	 {
@@ -110,6 +175,13 @@ public class Configs
 */	
 	//private ConfigEntry<bool> m_ResetDifficultyAfterFinalBosses = Bind("Difficulty", "Reset after Final Bosses", false, "If disabled then the difficulty continues getting harder after killing a final boss");
 	private ConfigEntry<bool> m_ResetPeltPricesAfterFinalBosses = Bind("Pelts", "Reset Prices after Final Bosses", false, "If disabled then the prices for pelts resets back to cheapest after killing a final boss");
+	
+	private ConfigEntry<int> m_DifficultyIncreaseChancePerReset = Bind("Difficulty", "Chance per Reset", 5, "Chance that each of Leshy's cards gets a buff after defeating a final boss.");
+	private ConfigEntry<int> m_DifficultyHealthBuff = Bind("Difficulty", "Health Buff", 1, "How much a cards health will buff if chosen to be buffed.");
+	private ConfigEntry<int> m_DifficultyHealthChance = Bind("Difficulty", "Health Chance", 40, "Chance that a card will get a health buff.");
+	private ConfigEntry<int> m_DifficultyAttackBuff = Bind("Difficulty", "Attack Buff", 1, "How much a cards attack will buff if chosen to be buffed.");
+	private ConfigEntry<int> m_DifficultyAttackChance = Bind("Difficulty", "Attack Chance", 35, "Chance that a card will get a attack buff.");
+	private ConfigEntry<int> m_DifficultySigilChance = Bind("Difficulty", "Sigil Chance", 25, "Chance that a card will get a sigil buff.");
 	
 	private static ConfigEntry<T> Bind<T>(string section, string key, T defaultValue, string description)
 	{

@@ -8,9 +8,20 @@ namespace EndlessMode
     [HarmonyPatch]
     public static class RunStats
     {
-        public static IReadOnlyDictionary<Opponent.Type, int> BossKillLookup => m_bossKillLookup;
+        /// <summary>
+        /// Total final bosses killed
+        /// NOTE: Not reliable when using a tool like debug menu because that skips killing the boss.
+        /// </summary>
         public static int TotalFinalBossesKilled => m_totalFinalBossesKilled;
+        
+        /// <summary>
+        /// Total Regions visited
+        /// </summary>
         public static int CurrentFloor => m_currentFloor;
+        
+        /// <summary>
+        /// Total times the player has defeated a final boss and has regenerated a new run
+        /// </summary>
         public static int TotalResets => m_totalResets;
 
         private static int m_currentFloor = 0;
@@ -21,7 +32,7 @@ namespace EndlessMode
         public static void SetupNewRun()
         {
             m_totalResets = 0;
-            m_currentFloor = 1;
+            m_currentFloor = 0;
             m_totalFinalBossesKilled = 0;
             m_bossKillLookup = new Dictionary<Opponent.Type, int>();
 

@@ -15,7 +15,6 @@ namespace EndlessMode
             
             // Fixes
             yield return typeof(AscensionSaveData).GetMethod("EndRun", allFlags);
-            yield return typeof(MapGenerator).GetMethod("ForceFirstNodeTraderForAscension", allFlags);
             
             // Seeds
             yield return typeof(SaveFile).GetMethod("GetCurrentRandomSeed", allFlags);
